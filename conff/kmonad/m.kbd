@@ -1,0 +1,83 @@
+(defcfg 
+
+input (iokit-name)
+output (kext)
+
+
+fallthrough true
+
+allow-cmd true
+
+)
+
+
+(defsrc
+  esc 1    2    3    4    5    6    7    8    9    0    -    =    bspc  
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]    \    del
+  caps   a    s    d    f    g    h    j    k    l    ;    '    ret      pgup
+  lsft    z    x    c    v    b    n    m    ,    .    /    rsft      up pgdn
+  lctl lalt lmet             spc             ralt        fn left down rght
+)
+
+
+(defalias
+
+
+    tmx_l C-spc
+
+    ;; toggle vim as arrow keys when held and press esc when tapped
+    mov (tap-hold-next-release 200 esc (layer-toggle movement))
+    num (tap-hold-next-release 200 tab (layer-toggle numbers))
+
+    ;; Something useful
+    cpy C-c
+    pst C-v
+    cut C-x
+
+    ;; Something silly
+    ful C-x
+    md1 (around a (around b c))    ;; abc
+    md2 (around a (around lsft b)) ;; aB
+    md3 C-A-M-S-l
+    md4 (around % b)               ;; BEWARE: %B, not %b, do you see why?
+
+    sft_a (tap-hold-next-release 250 a lsft)
+    alt_s (tap-hold-next-release 250 s lalt)
+    ctl_d (tap-hold-next-release 250 d lctl)
+    met_f (tap-hold-next-release 250 f lmet)
+
+    met_j (tap-hold-next-release 250 j rmet)
+    ctl_k (tap-hold-next-release 250 k rctl)
+    alt_l (tap-hold-next-release 250 l lalt)
+    sft_; (tap-hold-next-release 250 ; rsft)
+
+
+    sft_[ (tap-hold-next-release 250 [ lsft)
+    sft_] (tap-hold-next-release 250 ] rsft)
+
+    
+)
+
+
+(deflayer base
+  esc 1    2    3    4    5    6    7    8    9    0    -    =    bspc  
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \    del
+  @mov @sft_a   @alt_s   @ctl_d   @met_f   g   h   @met_j   @ctl_k   @alt_l   @sft_; ' ret pgup
+  @sft_[ z    x    c    v    b    n    m    ,    .    /    @sft_] up pgdn
+  lctl lalt lmet             spc             @num fn left down rght)
+
+(deflayer movement
+  esc 1    2    3    4    5    6    7    8    9    0    -    =    bspc  
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]    \    del
+  lctl   a    s    d    f    g    left down up right  ;    '    @ful      pgup
+  lsft    z    x    c    v    b    n    m    ,    .    /    rsft      up pgdn
+  lctl lalt lmet             @tmx_l             ralt        fn left down rght
+)
+
+(deflayer numbers
+  esc 1    2    3    4    5    6    7    8    9    0    -    =    bspc  
+  tab   q    7    8    9    t    y    u    i    o    p    [    ]    \    del
+  caps   a    4    5    6    g    h    j    k    l    ;    '    ret      pgup
+  lsft    z    1    2    3    b    0    m    ,    .    /    rsft      up pgdn
+  lctl lalt lmet             spc             ralt        fn left down rght
+)

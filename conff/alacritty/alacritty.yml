@@ -1,0 +1,46 @@
+env:
+  TERM: xterm-256color
+
+window:
+  decorations: "Buttonless"
+  opacity: .85
+  resize_increments: true
+
+font:
+  normal:
+        family: Hack Nerd Font
+        style: Regular
+  bold:
+        family: Hack Nerd Font
+        style: Bold
+  italic:
+        family: Hack Nerd Font
+        style: Italic
+
+  size: 16.0
+
+key_bindings:
+
+  # tmux keys  
+
+  - { key: T, mods: Command, chars: "\x00\x63" }
+
+    ## k to show sessions , j to show tabs
+  - { key: K, mods: Command, chars: "\x00\x73" }
+  - { key: J, mods: Command, chars: "\x00\x26" }
+
+    ## h to go to prev tab, l to go to next tab
+  - { key: H, mods: Command, chars: "\x10" }
+  - { key: L, mods: Command, chars: "\x0e" }
+
+    ## press n to go n tab
+  - { key: Key1, mods: Command, chars: "\x00\x31" }
+  - { key: Key2, mods: Command, chars: "\x00\x32" }
+  - { key: Key3, mods: Command, chars: "\x00\x33" }
+  - { key: Key4, mods: Command, chars: "\x00\x34" }
+  - { key: Key5, mods: Command, chars: "\x00\x35" }
+  - { key: Key6, mods: Command, chars: "\x00\x36" }
+  - { key: Key7, mods: Command, chars: "\x00\x37" }
+  - { key: Key8, mods: Command, chars: "\x00\x38" }
+  - { key: Key9, mods: Command, chars: "\x00\x39" }
+  - { key: Key0, mods: Command, chars: "\x00\x30" }

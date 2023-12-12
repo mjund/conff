@@ -1,0 +1,9 @@
+cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
+
+cmd copy_to_clipboard %{{
+    if type pbcopy > /dev/null 2>&1; then
+    printf '%s' "$f" | pbcopy
+    elif type xsel > /dev/null 2>&1; then
+    printf '%s' "$f" | xsel -ib
+    fi
+}}
